@@ -19,7 +19,9 @@ namespace AluraTunes.EntityLinQParteI
                 new Genre { Id = 6, Name = "MPB"}
             };
 
-            var query = from g in genres where g.Name.Contains("Rock") select g;
+            var query = from g in genres 
+                        where g.Name.Contains("Rock") 
+                        select g;
 
             foreach (var genre in query)
             {
@@ -30,7 +32,7 @@ namespace AluraTunes.EntityLinQParteI
 
             List<Music> musics = new List<Music>()
             {
-                new Music { Id = 1, Name = "Highway to hell", GenreId = 1},
+                new Music { Id = 1, Name = "Highway to hell", GenreId = 2},
                 new Music { Id = 2, Name = "Faroeste Caboclo", GenreId = 6},
                 new Music { Id = 3, Name = "Fire", GenreId = 5},
                 new Music { Id = 4, Name = "I write sins not tragedies", GenreId = 2},
@@ -38,11 +40,13 @@ namespace AluraTunes.EntityLinQParteI
                 new Music { Id = 6, Name = "7 Rings", GenreId = 3},
             };
 
-            var query2 = from m in musics ;
+            var musicQuery = from m in musics 
+                             join g in genres on m.GenreId equals g.Id 
+                             select new {m, g};
 
-            foreach(var music in query2)
+            foreach(var music in musicQuery)
             {
-                Console.WriteLine($"ID: {music.Id} Nome: {music.Name} IdGenero: {music.GenreId}");
+                Console.WriteLine($"ID: {music.m.Id} \t Nome: {music.m.Name} \t IdGenero: {music.m.GenreId} \t Nome genero: {music.g.Name}");
             }
         }
     }
