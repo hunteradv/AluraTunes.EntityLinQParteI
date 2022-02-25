@@ -1,4 +1,4 @@
-﻿using AluraTunes.EntityLinQParteI.Class;
+﻿using AluraTunes.EntityLinQParteI.LinqToObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +19,7 @@ namespace AluraTunes.EntityLinQParteI
                 new Genre { Id = 6, Name = "MPB"}
             };
 
+            //select para filtrar generos que contém a palavra "Rock"
             var query = from g in genres 
                         where g.Name.Contains("Rock") 
                         select g;
@@ -40,6 +41,7 @@ namespace AluraTunes.EntityLinQParteI
                 new Music { Id = 6, Name = "7 Rings", GenreId = 3},
             };
 
+            //select para filtrar musicas cujo GenderId da classe Music é igual ao Id da clase Gender
             var musicQuery = from m in musics 
                              join g in genres on m.GenreId equals g.Id 
                              select new {m, g};
@@ -48,6 +50,19 @@ namespace AluraTunes.EntityLinQParteI
             {
                 Console.WriteLine($"ID: {music.m.Id} \t Nome: {music.m.Name} \t IdGenero: {music.m.GenreId} \t Nome genero: {music.g.Name}");
             }
-        }
+
+            Console.WriteLine();
+
+            //select para filtrar musicas cujo Id da classe Gender contém a palavra Pop que contém a palavra POP
+            var musicQueryName = from m in musics
+                             join g in genres on m.GenreId equals g.Id
+                             where g.Name == "Pop"
+                             select m;            
+
+            foreach (var music in musicQueryName)
+            {
+                Console.WriteLine($"ID: {music.Name} \t Nome: {music.Name} \t IdGenero: {music.GenreId}");
+            }
+        }        
     }
 }

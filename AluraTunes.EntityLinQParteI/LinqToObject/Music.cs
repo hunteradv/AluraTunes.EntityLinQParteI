@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluraTunes.EntityLinQParteI.Class
+namespace AluraTunes.EntityLinQParteI.LinqToObject
 {
-    public class Genre
+    public class Music
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int GenreId { get; set; }
     }
 }
