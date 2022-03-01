@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AluraTunes.EntityLinQParteI.LinqToObject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -9,33 +10,61 @@ namespace AluraTunes.EntityLinQParteI
     {
         static void Main(string[] args)
         {
-            XElement root = XElement.Load(@"C:\Users\gusta\source\repos\AluraTunes.EntityLinQParteI\AluraTunes.EntityLinQParteI\Data\AluraTunes.xml");
-
-            var queryXML = from g in root.Elements("Generos").Elements("Genero")
-                           select g;
-
-            foreach (var genre in queryXML)
-            {
-                Console.WriteLine("{0}\t{1}", genre.Element("GeneroId").Value, genre.Element("Nome").Value);
-            }
-
-            var query = from g in root.Element("Generos").Elements("Genero")
-                        join m in root.Element("Musicas").Elements("Musica")
-                            on g.Element("GeneroId").Value equals m.Element("GeneroId").Value
-                        select new
+            List<Genre> genres = new List<Genre>()
                         {
-                            MusicId = m.Element("MusicaId").Value,
-                            Music = m.Element("Nome").Value, 
-                            Genre = g.Element("Nome").Value
+                            new Genre { Id = 1, Name = "Rock"},
+                            new Genre { Id = 2, Name = "Rock Alternativo"},
+                            new Genre { Id = 3, Name = "Pop"},
+                            new Genre { Id = 4, Name = "Pop Rock"},
+                            new Genre { Id = 5, Name = "K-Pop"},
+                            new Genre { Id = 6, Name = "MPB"}
                         };
 
-            Console.WriteLine();
+            //select para filtrar generos que contém a palavra "Rock"
+            var query = from g in genres
+                        where g.Name.Contains("Rock")
+                        select g;
+
+            foreach (var genre in query)
+            {
+                Console.WriteLine($"ID: {genre.Id} Gênero: {genre.Name}");
+            }
+
             Console.WriteLine();
 
-            foreach (var music in query)
+            List<Music> musics = new List<Music>()
+                        {
+                            new Music { Id = 1, Name = "Highway to hell", GenreId = 2},
+                            new Music { Id = 2, Name = "Faroeste Caboclo", GenreId = 6},
+                            new Music { Id = 3, Name = "Fire", GenreId = 5},
+                            new Music { Id = 4, Name = "I write sins not tragedies", GenreId = 2},
+                            new Music { Id = 5, Name = "This is gospel", GenreId = 4},
+                            new Music { Id = 6, Name = "7 Rings", GenreId = 3},
+                        };
+
+            //select para filtrar musicas cujo GenderId da classe Music é igual ao Id da clase Gender
+            var musicQuery = from m in musics
+                             join g in genres on m.GenreId equals g.Id
+                             select new { m, g };
+
+            foreach (var music in musicQuery)
             {
-                Console.WriteLine("{0}\t{1}\t{2}", music.MusicId, music.Music, music.Genre);
+                Console.WriteLine($"ID: {music.m.Id} \t Nome: {music.m.Name} \t IdGenero: {music.m.GenreId} \t Nome genero: {music.g.Name}");
             }
-        }                    
+
+            Console.WriteLine();
+
+            //select para filtrar musicas cujo Id da classe Gender contém a palavra Pop que contém a palavra POP
+            var musicQueryName = from m in musics
+                                 join g in genres on m.GenreId equals g.Id
+                                 where g.Name == "Pop"
+                                 select m;
+
+            foreach (var music in musicQueryName)
+            {
+                Console.WriteLine($"ID: {music.Name} \t Nome: {music.Name} \t IdGenero: {music.GenreId}");
+            }
+        
+        }
     }
 }
