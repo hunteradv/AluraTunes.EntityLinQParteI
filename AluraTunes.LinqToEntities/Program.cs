@@ -31,13 +31,35 @@ namespace AluraTunes.LinqToEntities
 
                 query2 = query2.Take(10);
 
+                context.Database.Log = Console.WriteLine;
+
                 Console.WriteLine();
-                Console.WriteLine("Segunda query");
+                Console.WriteLine("Query faixa e genero");
                 Console.WriteLine();
 
                 foreach (var item in query2)
                 {
                     Console.WriteLine($"{item.f.Nome} \t {item.g.Nome}");
+                }
+
+
+                //WHERE
+
+                var searchText = "Led";
+
+                //var query3 = from a in context.Artistas
+                //             where a.Nome.Contains(searchText)
+                //             select a;
+
+                var query3 = context.Artistas.Where(a => a.Nome.Contains(searchText));
+
+                Console.WriteLine();
+                Console.WriteLine("Query artista com where");
+                Console.WriteLine();
+
+                foreach (var artista in query3)
+                {
+                    Console.WriteLine($"{artista.ArtistaId}\t{artista.Nome}");
                 }
             }
 
