@@ -31,7 +31,7 @@ namespace AluraTunes.LinqToEntities
 
                 query2 = query2.Take(10);
 
-                context.Database.Log = Console.WriteLine;
+                //context.Database.Log = Console.WriteLine;
 
                 Console.WriteLine();
                 Console.WriteLine("Query faixa e genero");
@@ -43,7 +43,7 @@ namespace AluraTunes.LinqToEntities
                 }
 
 
-                //WHERE
+                //AULA 03
 
                 var searchText = "Led";
 
@@ -61,6 +61,36 @@ namespace AluraTunes.LinqToEntities
                 {
                     Console.WriteLine($"{artista.ArtistaId}\t{artista.Nome}");
                 }
+
+
+                //AULA 04
+                Console.WriteLine();
+                Console.WriteLine("Aula 04");
+                Console.WriteLine();
+
+                //var query3 = from a in context.Artistas
+                //             where a.Nome.Contains(searchText)
+                //             select a;
+
+                var queryArtistasEAlbuns = from a in context.Artistas
+                                           join alb in context.Albums
+                                           on a.ArtistaId equals alb.ArtistaId
+                                           where a.Nome.Contains(searchText)
+                                           select new
+                                           {
+                                               ArtistName = a.Nome,
+                                               AlbumName = alb.Titulo
+                                           };
+
+                Console.WriteLine();
+                Console.WriteLine("Query artista com album");
+                Console.WriteLine();
+
+                foreach (var item in queryArtistasEAlbuns)
+                {
+                    Console.WriteLine($"{item.ArtistName}\t{item.AlbumName}");
+                }
+
             }
 
             Console.ReadKey();
