@@ -14,7 +14,7 @@ namespace AluraTunes.LinqToEntities
             using(var context = new AluraTunesEntities())
             {
                 var query = from g in context.Generos
-                select g;
+                            select g;
 
                 Console.WriteLine("Primeira query");
                 Console.WriteLine();
@@ -91,9 +91,55 @@ namespace AluraTunes.LinqToEntities
                     Console.WriteLine($"{item.ArtistName}\t{item.AlbumName}");
                 }
 
+                Console.WriteLine();
+                Console.WriteLine("Album usando navigation property");
+                Console.WriteLine();
+
+                var queryAlbums = from album in context.Albums
+                                  where album.Artista.Nome.Contains(searchText)
+                                  select new
+                                  {
+                                      ArtistName = album.Artista.Nome,
+                                      AlbumName = album.Titulo
+                                  };
+
+                foreach (var album in queryAlbums)
+                {
+                    Console.WriteLine($"{album.ArtistName}\t{album.AlbumName}");
+                }
+
+
+                Console.WriteLine();
+                Console.WriteLine("Album usando navigation property sem filtrar por album");
+                Console.WriteLine();
+
+                GetTunes(context, "Led Zeppelin", "");
+
+                Console.WriteLine();
+                Console.WriteLine("Filtrando por album");
+                Console.WriteLine();
+
+                GetTunes(context, "Led Zeppelin", "Graffiti");
             }
 
             Console.ReadKey();
+        }
+
+        private static void GetTunes(AluraTunesEntities context, string searchText, string searchAlbum)
+        {
+            var queryAlbumsAndArtists = from f in context.Faixas
+                                        where f.Album.Artista.Nome.Contains(searchText)
+                                        select f;
+
+            if(!string.IsNullOrEmpty(searchAlbum))
+            {
+                queryAlbumsAndArtists = queryAlbumsAndArtists.Where(q => q.Album.Titulo.Contains(searchAlbum));
+            }
+
+            foreach (var faixa in queryAlbumsAndArtists)
+            {
+                Console.WriteLine($"{faixa.Album.Titulo.PadRight(40)}\t{faixa.Nome}");
+            }
         }
     }
 }
