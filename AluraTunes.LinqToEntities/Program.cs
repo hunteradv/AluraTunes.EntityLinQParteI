@@ -127,14 +127,31 @@ namespace AluraTunes.LinqToEntities
 
         private static void GetTunes(AluraTunesEntities context, string searchText, string searchAlbum)
         {
+            //PRIMEIRA FORMA DE FAZER
+            //var queryAlbumsAndArtists = from f in context.Faixas
+            //                            where f.Album.Artista.Nome.Contains(searchText)
+            //                            select f;
+
+            //if(!string.IsNullOrEmpty(searchAlbum))
+            //{
+            //    queryAlbumsAndArtists = queryAlbumsAndArtists.Where(q => q.Album.Titulo.Contains(searchAlbum));
+            //}
+
+            ////filtrando pelo nome de album e nome de faixa em ordem crescente (alfabética)
+            ////queryAlbumsAndArtists = queryAlbumsAndArtists.OrderBy(q => q.Album.Titulo).ThenBy(q => q.Nome);
+
+            ////filtrando pelo nome de album e nome de faixa em ordem decrescente (alfabética)
+            //queryAlbumsAndArtists = queryAlbumsAndArtists.OrderBy(q => q.Album.Titulo).ThenByDescending(q => q.Nome);
+
+
+            //SEGUNDA FORMA DE FAZER (MAIS SIMPLES)
+
             var queryAlbumsAndArtists = from f in context.Faixas
                                         where f.Album.Artista.Nome.Contains(searchText)
+                                        && (!string.IsNullOrEmpty(searchAlbum) ? f.Album.Titulo.Contains(searchAlbum) : true)
+                                        orderby f.Album.Titulo, f.Nome
                                         select f;
 
-            if(!string.IsNullOrEmpty(searchAlbum))
-            {
-                queryAlbumsAndArtists = queryAlbumsAndArtists.Where(q => q.Album.Titulo.Contains(searchAlbum));
-            }
 
             foreach (var faixa in queryAlbumsAndArtists)
             {
