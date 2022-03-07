@@ -13,6 +13,8 @@ namespace AluraTunes.LinqToEntitiesCountSumGroupby
         {
             using (var context = new AluraTunesEntities())
             {
+                //COUNT
+
                 var query = from f in context.Faixas
                             where f.Album.Artista.Nome == "Led Zeppelin"
                             select f;
@@ -26,7 +28,31 @@ namespace AluraTunes.LinqToEntitiesCountSumGroupby
                 //Método 2
                 var quantity = context.Faixas.Count(f => f.Album.Artista.Nome == "Led Zeppelin");
 
+                Console.WriteLine();
+                Console.WriteLine("COUNT QUANTIDADE DE MUSICAS NO BD");
+                Console.WriteLine();
+
                 Console.WriteLine($"Led Zeppelin tem {quantity} músicas no banco de dados");
+
+
+                //SUM
+
+                var querySum = from inv in context.ItemsNotaFiscal
+                               where inv.Faixa.Album.Artista.Nome == "Led Zeppelin"
+                               select new { totalItem = inv.Quantidade * inv.PrecoUnitario};
+
+                Console.WriteLine();
+                Console.WriteLine("NOTA FISCAL");
+                Console.WriteLine();
+
+                //foreach (var inv in querySum)
+                //{
+                //    Console.WriteLine($"{inv.totalItem}");
+                //}
+
+                var totalArtist = querySum.Sum(q => q.totalItem);
+
+                Console.WriteLine($"Total do artista: R$ {totalArtist}");
             }
 
             Console.ReadKey();
