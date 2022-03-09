@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluraTunes.LinqToEntities",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluraTunes.LinqToEntitiesCountSumGroupby", "AluraTunes.LinqToEntitiesCountSumGroupby\AluraTunes.LinqToEntitiesCountSumGroupby.csproj", "{413B0235-48A5-48BD-87E6-B4D72497D2B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluraTunes.LinqToEntities.Avg.ExtensionMethods", "AluraTunes.LinqToEntities.Avg.ExtensionMethods\AluraTunes.LinqToEntities.Avg.ExtensionMethods.csproj", "{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{413B0235-48A5-48BD-87E6-B4D72497D2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{413B0235-48A5-48BD-87E6-B4D72497D2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{413B0235-48A5-48BD-87E6-B4D72497D2B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
