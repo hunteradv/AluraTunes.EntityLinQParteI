@@ -53,6 +53,26 @@ namespace AluraTunes.LinqToEntitiesCountSumGroupby
                 var totalArtist = querySum.Sum(q => q.totalItem);
 
                 Console.WriteLine($"Total do artista: R$ {totalArtist}");
+
+
+
+                //GROUPBY
+
+                var queryGroupby = from inv in context.ItemsNotaFiscal
+                                   where inv.Faixa.Album.Artista.Nome == "Led Zeppelin"
+                                   group inv by inv.Faixa.Album into grouped
+                                   let sellsPerAlbum = grouped.Sum(a => a.Quantidade * a.PrecoUnitario)
+                                   orderby sellsPerAlbum descending
+                                   select new
+                                   {
+                                        albumTitle = grouped.Key.Titulo,
+                                        totalPerAlbum = sellsPerAlbum
+                                   };
+
+                foreach (var grouped in queryGroupby)
+                {
+                    Console.WriteLine($"{grouped.albumTitle, -40}\t{grouped.totalPerAlbum}");
+                }
             }
 
             Console.ReadKey();
