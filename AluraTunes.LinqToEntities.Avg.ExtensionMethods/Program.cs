@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,13 +31,13 @@ namespace AluraTunes.LinqToEntities.Avg.ExtensionMethods
                 Console.WriteLine($"A venda média é de ${averageSale}");
 
                 var sales = (from inv in context.NotasFiscais
-                            group inv by 1 into grouped
-                            select new
-                            {
-                                biggestSale = grouped.Max(nf => nf.Total),
-                                lowestSale = grouped.Min(nf => nf.Total),
-                                averageSale = grouped.Average(nf => nf.Total)
-                            }).Single();
+                             group inv by 1 into grouped
+                             select new
+                             {
+                                 biggestSale = grouped.Max(nf => nf.Total),
+                                 lowestSale = grouped.Min(nf => nf.Total),
+                                 averageSale = grouped.Average(nf => nf.Total)
+                             }).Single();
 
                 Console.WriteLine();
                 Console.WriteLine("Método 2");
@@ -60,18 +61,49 @@ namespace AluraTunes.LinqToEntities.Avg.ExtensionMethods
 
                 var query = from invoice in context.NotasFiscais
                             select invoice.Total;
-
-                var count = query.Count();
-                var ordenedQuery = query.OrderBy(invoice => invoice);
-
-                var centralElement = ordenedQuery.Skip(count / 2).First();
-
-                var median = centralElement;
+                decimal median = Median(query);
 
                 Console.WriteLine($"Mediana: {median}");
+
+                var medianSales = context.NotasFiscais.Median(invoice => invoice.Total);
+
+                Console.WriteLine($"Mediana (com método de extensão): {medianSales}");
             }
 
             Console.ReadKey();
+        }
+
+        private static decimal Median(IQueryable<decimal> query)
+        {
+            var count = query.Count();
+            var ordenedQuery = query.OrderBy(invoice => invoice);
+
+            var centralElement1 = ordenedQuery.Skip(count / 2).First();
+
+            var centralElement2 = ordenedQuery.Skip((count - 1) / 2).First();
+
+            var median = (centralElement1 + centralElement2) / 2;
+
+            return median;
+        }
+    }
+    static class LinqExtension
+    {
+        public static decimal Median<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector)
+        {
+            var count = source.Count();
+
+            var funcSelector = selector.Compile();
+
+            var ordenedQuery = source.Select(funcSelector).OrderBy(total => total);
+
+            var centralElement1 = ordenedQuery.Skip(count / 2).First();
+
+            var centralElement2 = ordenedQuery.Skip((count - 1) / 2).First();
+
+            var median = (centralElement1 + centralElement2) / 2;
+
+            return median;
         }
     }
 }
