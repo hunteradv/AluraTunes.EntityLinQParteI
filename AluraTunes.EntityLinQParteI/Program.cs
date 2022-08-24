@@ -34,7 +34,7 @@ namespace AluraTunes.EntityLinQParteI
 
             List<Music> musics = new List<Music>()
                         {
-                            new Music { Id = 1, Name = "Highway to hell", GenreId = 2},
+                            new Music { Id = 1, Name = "Highway to hell", GenreId = 1},
                             new Music { Id = 2, Name = "Faroeste Caboclo", GenreId = 6},
                             new Music { Id = 3, Name = "Fire", GenreId = 5},
                             new Music { Id = 4, Name = "I write sins not tragedies", GenreId = 2},
@@ -62,7 +62,7 @@ namespace AluraTunes.EntityLinQParteI
 
             foreach (var music in musicQueryName)
             {
-                Console.WriteLine($"ID: {music.Name} \t Nome: {music.Name} \t IdGenero: {music.GenreId}");
+                Console.WriteLine($"ID: {music.Id} \t Nome: {music.Name} \t IdGenero: {music.GenreId}");
             }
         
         }
