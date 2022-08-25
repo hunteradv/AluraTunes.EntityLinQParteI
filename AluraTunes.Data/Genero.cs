@@ -7,31 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AluraTunes.LinqToEntities.Data
+namespace AluraTunes.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class NotaFiscal
+    public partial class Genero
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NotaFiscal()
+        public Genero()
         {
-            this.ItemNotaFiscals = new HashSet<ItemNotaFiscal>();
+            this.Faixas = new HashSet<Faixa>();
         }
     
-        public int NotaFiscalId { get; set; }
-        public int ClienteId { get; set; }
-        public System.DateTime DataNotaFiscal { get; set; }
-        public string Endereco { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string Pais { get; set; }
-        public string CEP { get; set; }
-        public decimal Total { get; set; }
+        public int GeneroId { get; set; }
+        public string Nome { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemNotaFiscal> ItemNotaFiscals { get; set; }
+        public virtual ICollection<Faixa> Faixas { get; set; }
     }
 }

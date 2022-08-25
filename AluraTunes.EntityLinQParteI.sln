@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluraTunes.LinqToEntitiesCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluraTunes.LinqToEntities.Avg.ExtensionMethods", "AluraTunes.LinqToEntities.Avg.ExtensionMethods\AluraTunes.LinqToEntities.Avg.ExtensionMethods.csproj", "{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluraTunes.Data", "AluraTunes.Data\AluraTunes.Data.csproj", "{0EC62052-34AF-4B53-BACE-ED16E74B021D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC62052-34AF-4B53-BACE-ED16E74B021D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC62052-34AF-4B53-BACE-ED16E74B021D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC62052-34AF-4B53-BACE-ED16E74B021D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC62052-34AF-4B53-BACE-ED16E74B021D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

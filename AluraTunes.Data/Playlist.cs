@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AluraTunes.LinqToEntities.Data
+namespace AluraTunes.Data
 {
     using System;
     using System.Collections.Generic;

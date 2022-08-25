@@ -7,31 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AluraTunes.LinqToEntities.Avg.ExtensionMethods.Data
+namespace AluraTunes.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class NotaFiscal
+    public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NotaFiscal()
+        public Cliente()
         {
-            this.ItemNotaFiscals = new HashSet<ItemNotaFiscal>();
+            this.NotaFiscals = new HashSet<NotaFiscal>();
         }
     
-        public int NotaFiscalId { get; set; }
         public int ClienteId { get; set; }
-        public System.DateTime DataNotaFiscal { get; set; }
+        public string PrimeiroNome { get; set; }
+        public string Sobrenome { get; set; }
+        public string Empresa { get; set; }
         public string Endereco { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Pais { get; set; }
         public string CEP { get; set; }
-        public decimal Total { get; set; }
+        public string Fone { get; set; }
+        public string Fax { get; set; }
+        public string Email { get; set; }
+        public Nullable<int> SuporteId { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
+        public virtual Funcionario Funcionario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemNotaFiscal> ItemNotaFiscals { get; set; }
+        public virtual ICollection<NotaFiscal> NotaFiscals { get; set; }
     }
 }

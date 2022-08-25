@@ -7,23 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AluraTunes.LinqToEntities.Data
+namespace AluraTunes.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Artista
+    public partial class Album
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Artista()
+        public Album()
         {
-            this.Albums = new HashSet<Album>();
+            this.Faixas = new HashSet<Faixa>();
         }
     
+        public int AlbumId { get; set; }
+        public string Titulo { get; set; }
         public int ArtistaId { get; set; }
-        public string Nome { get; set; }
     
+        public virtual Artista Artista { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Album> Albums { get; set; }
+        public virtual ICollection<Faixa> Faixas { get; set; }
     }
 }

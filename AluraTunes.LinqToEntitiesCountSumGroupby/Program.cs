@@ -1,9 +1,6 @@
-﻿using AluraTunes.LinqToEntitiesCountSumGroupby.Data;
+﻿using AluraTunes.Data;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AluraTunes.LinqToEntitiesCountSumGroupby
 {
@@ -37,7 +34,7 @@ namespace AluraTunes.LinqToEntitiesCountSumGroupby
 
                 //SUM
 
-                var querySum = from inv in context.ItemsNotaFiscal
+                var querySum = from inv in context.ItensNotaFiscal
                                where inv.Faixa.Album.Artista.Nome == "Led Zeppelin"
                                select new { totalItem = inv.Quantidade * inv.PrecoUnitario};
 
@@ -58,7 +55,7 @@ namespace AluraTunes.LinqToEntitiesCountSumGroupby
 
                 //GROUPBY
 
-                var queryGroupby = from inv in context.ItemsNotaFiscal
+                var queryGroupby = from inv in context.ItensNotaFiscal
                                    where inv.Faixa.Album.Artista.Nome == "Led Zeppelin"
                                    group inv by inv.Faixa.Album into grouped
                                    let sellsPerAlbum = grouped.Sum(a => a.Quantidade * a.PrecoUnitario)

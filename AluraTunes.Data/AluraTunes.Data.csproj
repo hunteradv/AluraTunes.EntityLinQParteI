@@ -4,13 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6A7343E2-57AD-45D7-ADC8-13B2C2AF0B51}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>AluraTunes.LinqToEntities.Avg.ExtensionMethods</RootNamespace>
-    <AssemblyName>AluraTunes.LinqToEntities.Avg.ExtensionMethods</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <ProjectGuid>{0EC62052-34AF-4B53-BACE-ED16E74B021D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AluraTunes.Data</RootNamespace>
+    <AssemblyName>AluraTunes.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -29,7 +29,6 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -39,7 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -67,20 +65,77 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Album.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AluraTunes.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AluraTunes.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AluraTunes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AluraTunes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Artista.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Faixa.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Funcionario.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Genero.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemNotaFiscal.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotaFiscal.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Playlist.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoMidia.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Content Include="AluraTunes.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AluraTunes.Context.cs</LastGenOutput>
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+    </Content>
+    <Content Include="AluraTunes.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AluraTunes.sql" />
+    <Content Include="AluraTunes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+      <LastGenOutput>AluraTunes.cs</LastGenOutput>
+    </Content>
+    <Content Include="AluraTunes_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>AluraTunes.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -90,10 +145,20 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AluraTunes.Data\AluraTunes.Data.csproj">
-      <Project>{0ec62052-34af-4b53-bace-ed16e74b021d}</Project>
-      <Name>AluraTunes.Data</Name>
-    </ProjectReference>
+    <EntityDeploy Include="AluraTunes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AluraTunes.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AluraTunes.edmx.diagram">
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+    </None>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
