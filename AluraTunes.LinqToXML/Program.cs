@@ -10,7 +10,7 @@ namespace AluraTunes.LinqToXML
         {
             XElement root = XElement.Load(@"C:\Users\gusta\source\repos\AluraTunes.EntityLinQParteI\AluraTunes.LinqToXML\Data\AluraTunes.xml");
 
-            var queryXML = from g in root.Elements("Generos").Elements("Genero")
+            var queryXML = from g in root.Element("Generos").Elements("Genero")
                            select g;
 
             foreach (var genre in queryXML)
@@ -33,7 +33,7 @@ namespace AluraTunes.LinqToXML
 
             foreach (var music in query)
             {
-                Console.WriteLine("{0}\t{1}\t{2}", music.MusicId, music.Music, music.Genre);
+                Console.WriteLine($"Id: {music.MusicId} \t Nome: {music.Music} \t Genero: {music.Genre}");
             }
         }
     }
