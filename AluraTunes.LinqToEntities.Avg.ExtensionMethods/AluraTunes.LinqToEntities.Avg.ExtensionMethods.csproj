@@ -90,11 +90,5 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AluraTunes.Data\AluraTunes.Data.csproj">
-      <Project>{0ec62052-34af-4b53-bace-ed16e74b021d}</Project>
-      <Name>AluraTunes.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

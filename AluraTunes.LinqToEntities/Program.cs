@@ -1,5 +1,4 @@
-﻿using AluraTunes.Data;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace AluraTunes.LinqToEntities
@@ -8,7 +7,7 @@ namespace AluraTunes.LinqToEntities
     {
         static void Main(string[] args)
         {
-            using(var context = new AluraTunesEntities())
+            using(var context = new AluraTunesEntities1())
             {
                 var query = from g in context.Generos
                             select g;
@@ -122,7 +121,7 @@ namespace AluraTunes.LinqToEntities
             Console.ReadKey();
         }
 
-        private static void GetTunes(AluraTunesEntities context, string searchText, string searchAlbum)
+        private static void GetTunes(AluraTunesEntities1 context, string searchText, string searchAlbum)
         {
             //PRIMEIRA FORMA DE FAZER
             //var queryAlbumsAndArtists = from f in context.Faixas
