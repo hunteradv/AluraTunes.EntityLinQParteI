@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AluraTunes.LinqToEntitiesCountSumGroupby.Data;
+using System;
 using System.Linq;
 
 namespace AluraTunes.LinqToEntitiesCountSumGroupby
@@ -7,7 +8,7 @@ namespace AluraTunes.LinqToEntitiesCountSumGroupby
     {
         static void Main(string[] args)
         {
-            using (var context = new AluraTunesEntities())
+            using (var context = new AluraTunesEntities1())
             {
                 //COUNT
 
@@ -19,6 +20,7 @@ namespace AluraTunes.LinqToEntitiesCountSumGroupby
                 //var quantity = query.Count();
 
                 //Console.WriteLine($"Led Zeppelin tem {quantity} músicas no banco de dados");
+
 
 
                 //Método 2
