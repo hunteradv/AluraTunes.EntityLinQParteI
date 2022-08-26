@@ -1,5 +1,4 @@
-﻿using AluraTunes.Data;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace AluraTunes.LinqToEntitiesCountSumGroupby
